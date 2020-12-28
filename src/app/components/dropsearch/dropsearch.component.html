@@ -1,0 +1,13 @@
+<div class="dropsearch" [style.--pcolor]="color" [style.--w]="width" [style.margin]="margin">
+    <div class='shinput'>
+        <input #shdropsh [(ngModel)]="value" (keyup)='onChange($event)'
+            [placeholder]="placeholder" (focus)="focus($event)" autocomplete="off" />
+        <div class="shsearch" *ngIf="!value" (click)="shdropsh.focus()"></div>
+        <div class="clsearch" *ngIf="value" (click)="value = ''; event.emit(null)"></div>
+    </div>
+    <div class='dropsh' *ngIf="values.length>0 && show" [style.width]="width">
+        <div class='item' *ngFor="let item of list" (click)="select(item)">
+            {{item[keylabel]}} ({{item[keyvalue]}})
+        </div>
+    </div>
+</div>

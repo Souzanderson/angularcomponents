@@ -1,0 +1,141 @@
+.datepicker {
+    max-width: var(--w);
+    min-width: 250px;
+    font-family: Arial, Helvetica, sans-serif;
+    .shinput {
+        display: grid;
+        grid-template-columns: 1fr 30px;
+        padding: 8px 4px 8px 8px;
+        color: var(--pcolor);
+        border: 1px solid var(--pcolor) !important;
+        border-radius: 4px;
+        .shsearch {
+            background-image: url(./assets/calendar.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            border-left: 1px solid var(--pcolor);
+            cursor: pointer;
+        }
+        .clsearch {
+            background-image: url(./assets/close.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            border-left: 1px solid var(--pcolor);
+            cursor: pointer;
+        }
+        input {
+            outline: none;
+            background-color: unset;
+            border: unset;
+            width: 100%;
+            width: -moz-available; /* WebKit-based browsers will ignore this. */
+            width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+            width: fill-available;
+            padding-right: 8px;
+            padding-left: 8px;
+            margin-right: 8px;
+            margin-left: 8px;
+            color: var(--pcolor);
+        }
+    }
+    .shinput:focus-within {
+        box-shadow: 0 0 3px 1px var(--pcolor);
+    }
+}
+.dropdatepk {
+    position: absolute;
+    z-index: 99999;
+    top: var(--fposy);
+    left: var(--fposx);
+    transition: opacity 0.4s linear;
+    margin-top: 8px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    overflow: auto;
+    background-color: #ffffff;
+    min-width: 300px;
+    height: 260px;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+    .topdt {
+        display: grid;
+        grid-template-columns: 30px 1fr 30px;
+        padding: 8px;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .semana{
+        text-align: center;
+        padding: 8px;
+        background-color: #bcd4da;
+        border: 2px solid #ffffff;
+        font-size: 11px;
+        font-weight: bold;
+        border-radius: 4px;
+    }
+    .months{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .month{
+        text-align: center;
+        padding: 21px 8px 21px 8px;
+        cursor: pointer;
+    }
+    .month:hover{
+        background-color: #bcd4da;
+    }
+    .mesatual{
+        background-color: #bcd4da;
+        font-weight: bold;
+    }
+    .days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+    }
+    .day {
+        text-align: center;
+        padding: 8px;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: #eeeeee;
+        border: 2px solid #ffffff;
+        font-size: 11px;
+    }
+    .day:hover{
+        background-color: #bcd4da;
+    }
+    .hoje{
+        background-color: #bcd4da;
+        font-weight: bold;
+    }
+    .item {
+        padding: 8px;
+        z-index: 99999;
+    }
+    .item:hover {
+        cursor: pointer;
+        background-color: #bcd4da;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #bcd4da;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--pcolor);
+    border-radius: 10px;
+}

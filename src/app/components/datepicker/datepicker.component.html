@@ -1,0 +1,33 @@
+<div class="datepicker" [style.--pcolor]="color" [style.--w]="width" [style.margin]="margin">
+    <div class='shinput'>
+        <input #shdropsh [(ngModel)]="value" (keyup)='onChange($event)' size="10"
+            [placeholder]="placeholder" (focus)="focus($event)" autocomplete="off" />
+        <div class="shsearch" *ngIf="!value" (click)="shdropsh.focus()"></div>
+        <div class="clsearch" *ngIf="value" (click)="value = ''; event.emit(null)"></div>
+    </div>
+    <div class='dropdatepk' *ngIf="show" [style.width]="width">
+        <div class="topdt" [style.background]="topback" [style.color]="topcolor">
+            <div (click)="previousMonth()"><</div>
+            <div (click)="selectmonth= !selectmonth">{{meses[mesatual-1].mes}} | {{anoatual}}</div>
+            <div (click)="nextMonth()">></div>
+        </div>
+        <div class="days" *ngIf="!selectmonth">
+            <div *ngFor="let w of semana" class="semana">
+                {{w}}
+            </div>
+            <div *ngFor="let day of days">
+                <div class="day" [ngClass]="{hoje: day==diaatual}" (click)="select(day)" *ngIf="day">
+                    {{day}}
+                </div>
+                <div *ngIf="!day"></div>
+            </div>
+        </div>
+        <div class="months" *ngIf="selectmonth">
+            <div *ngFor="let mes of meses">
+                <div class="month" (click)="changeMonth(mes)">
+                    {{mes.mes}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
