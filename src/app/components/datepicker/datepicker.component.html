@@ -1,9 +1,9 @@
 <div class="datepicker" [style.--pcolor]="color" [style.--w]="width" [style.margin]="margin">
     <div class='shinput'>
-        <input #shdropsh [(ngModel)]="value" (keyup)='onChange($event)' size="10"
+        <input #shdropsh [(ngModel)]="value" (keydown)='keyDown($event)' (keyup)='keyUp($event)' size="10"
             [placeholder]="placeholder" (focus)="focus($event)" autocomplete="off" />
-        <div class="shsearch" *ngIf="!value" (click)="shdropsh.focus()"></div>
-        <div class="clsearch" *ngIf="value" (click)="value = ''; event.emit(null)"></div>
+        <div class="shsearch" (click)="shdropsh.focus()"></div>
+        <!-- <div class="clsearch" *ngIf="value" (click)="value = ''; event.emit(null)"></div> -->
     </div>
     <div class='dropdatepk' *ngIf="show" [style.width]="width">
         <div class="topdt" [style.background]="topback" [style.color]="topcolor">
@@ -16,7 +16,7 @@
                 {{w}}
             </div>
             <div *ngFor="let day of days">
-                <div class="day" [ngClass]="{hoje: day==diaatual}" (click)="select(day)" *ngIf="day">
+                <div class="day" [ngClass]="{hoje: day==diaatual && mesatual==meshoje}" (click)="select(day)" *ngIf="day">
                     {{day}}
                 </div>
                 <div *ngIf="!day"></div>

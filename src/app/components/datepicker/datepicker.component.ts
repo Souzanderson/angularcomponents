@@ -8,6 +8,7 @@ import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Outpu
 export class DatepickerComponent implements OnInit {
 
   @Input() value: string;
+  @Input() format: string;
   @Input() keyvalue = "value";
   @Input() keylabel = "label";
 
@@ -52,7 +53,12 @@ export class DatepickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    if (this.format) {
+      if (this.format == "ymd") {
+        let d = this.value.split("-")
+        this.value = d[2] + "/" + d[1] + "/" + d[0]
+      }
+    }
   }
 
 
@@ -123,27 +129,36 @@ export class DatepickerComponent implements OnInit {
     }, 50);
   }
 
-  onChange(evt) {
-    console.log(evt);
+  keyUp(evt){
+    this.value = this.value.replace(/[^0-9/]/g, '')
     if (evt.key != "Backspace") {
-      this.value = this.value.split("").filter(str => str != "/").join("")
-      if (this.value.length >= 2) {
-        this.value = this.value.substring(0, 2) + "/" + this.value.substring(2, this.value.length)
+      if (this.value) {
+        this.value = this.value.split("").filter(str => str != "/").join("")
+        if (this.value.length >= 2) {
+          this.value = this.value.substring(0, 2) + "/" + this.value.substring(2, this.value.length)
+        }
+        if (this.value.length >= 5) {
+          this.value = this.value.substring(0, 5) + "/" + this.value.substring(5, this.value.length)
+        }
+        if (this.value.length > 10) {
+          this.value = this.value.substring(0, 10)
+        }
+        if (this.value.length >= 5) {
+          this.mesatual = Number(this.value.substring(3, 5))
+          this.calcDays()
+        }
+        if (this.value.length == 10) {
+          this.anoatual = Number(this.value.substring(6, this.value.length))
+          this.calcDays()
+        }
       }
-      if (this.value.length >= 5) {
-        this.value = this.value.substring(0, 5) + "/" + this.value.substring(5, this.value.length)
-      }
-      if (this.value.length > 10) {
-        this.value = this.value.substring(0, 10)
-      }
-      if (this.value.length >= 5) {
-        this.mesatual = Number(this.value.substring(3, 5))
-        this.calcDays()
-      }
-      if (this.value.length == 10) {
-        this.anoatual = Number(this.value.substring(6, this.value.length))
-        this.calcDays()
-      }
+    }
+  }
+
+  keyDown(evt) {
+    
+    if (evt.key == "Tab") {
+      this.show = false
     }
 
   }
@@ -152,5 +167,4 @@ export class DatepickerComponent implements OnInit {
   public lostFocus(evt) {
     this.show = this.eRef.nativeElement.contains(evt.target)
   }
-
 }
