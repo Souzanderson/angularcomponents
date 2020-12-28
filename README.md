@@ -1,6 +1,7 @@
 # Angularcomponents
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
+This Project contain a date picker for angular and a drop search for search in list of data
 
 ## Development server
 
